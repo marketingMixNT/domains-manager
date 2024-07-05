@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('client');
             $table->string('site_url')->nullable();
             $table->string('service');
-            $table->string('host')->nullable();
-            $table->dateTime('invoice')->nullable();
-            $table->text('google_drive');
+            $table->boolean('invoice')->default(0);
+            $table->dateTime('invoice_date')->nullable();
+            $table->text('google_drive')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
+            $table->foreignId('host_id');
             $table->timestamps();
         });
     }

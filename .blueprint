@@ -1,6 +1,11 @@
 created:
     - database/factories/DomainFactory.php
-    - database/migrations/2024_07_05_090430_create_domains_table.php
+    - database/factories/HostFactory.php
+    - database/migrations/2024_07_05_113632_create_domains_table.php
+    - database/migrations/2024_07_05_113633_create_hosts_table.php
     - app/Models/Domain.php
+    - app/Models/Host.php
 models:
-    Domain: { client: string, site_url: 'string nullable', service: string, host: 'string nullable', invoice: 'datetime nullable', google_drive: text, start_date: 'datetime nullable', end_date: 'datetime nullable' }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Domain: { client: string, site_url: 'string nullable', service: string, invoice: boolean, invoice_date: 'datetime nullable', google_drive: 'text nullable', start_date: 'datetime nullable', end_date: 'datetime nullable', relationships: { belongsTo: Host } }
+    Host: { name: string, relationships: { hasMany: Domain } }

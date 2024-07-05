@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Domain extends Model
 {
@@ -18,11 +19,12 @@ class Domain extends Model
         'client',
         'site_url',
         'service',
-        'host',
         'invoice',
+        'invoice_date',
         'google_drive',
         'start_date',
         'end_date',
+        'host_id',
     ];
 
     /**
@@ -32,8 +34,15 @@ class Domain extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'invoice' => 'datetime',
+        'invoice' => 'boolean',
+        'invoice_date' => 'datetime',
         'start_date' => 'datetime',
         'end_date' => 'datetime',
+        'host_id' => 'integer',
     ];
+
+    public function host(): BelongsTo
+    {
+        return $this->belongsTo(Host::class);
+    }
 }

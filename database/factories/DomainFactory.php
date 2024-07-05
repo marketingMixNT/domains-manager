@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Domain;
+use App\Models\Host;
 
 class DomainFactory extends Factory
 {
@@ -24,11 +25,12 @@ class DomainFactory extends Factory
             'client' => $this->faker->word(),
             'site_url' => $this->faker->word(),
             'service' => $this->faker->word(),
-            'host' => $this->faker->word(),
-            'invoice' => $this->faker->dateTime(),
+            'invoice' => $this->faker->boolean(),
+            'invoice_date' => $this->faker->dateTime(),
             'google_drive' => $this->faker->text(),
             'start_date' => $this->faker->dateTime(),
             'end_date' => $this->faker->dateTime(),
+            'host_id' => Host::factory(),
         ];
     }
 }

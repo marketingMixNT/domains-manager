@@ -3,8 +3,15 @@ models:
     client: string
     site_url: string nullable
     service: string
-    host: string nullable
-    invoice: datetime nullable
-    google_drive: text
+    invoice: boolean de
+    invoice_date: datetime nullable
+    google_drive: text nullable
     start_date: datetime nullable
     end_date: datetime nullable
+    relationships:
+      belongsTo: Host
+
+  Host:
+    name: string
+    relationships:
+      hasMany: Domain

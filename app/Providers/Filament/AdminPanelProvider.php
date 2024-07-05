@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\DomainResource;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -29,19 +30,23 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('/')
             ->login()
+            ->passwordReset()
+            ->brandLogo('/logo.png')
+            ->brandLogoHeight(fn () => auth()->check() ? '40px' : '100px')
+            ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Violet,
+                'gray' => Color::Slate
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->resources([
+                DomainResource::class
+            ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                // Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
+            
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
