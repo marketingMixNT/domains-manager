@@ -1,0 +1,10 @@
+models:
+  Domain:
+    client: string
+    site_url: string nullable
+    service: string
+    host: string nullable
+    invoice: datetime nullable
+    google_drive: text
+    start_date: datetime nullable
+    end_date: datetime nullable
